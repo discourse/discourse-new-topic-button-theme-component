@@ -1,0 +1,36 @@
+<script type="text/discourse-plugin" version="0.8.18">
+api.decorateWidget("header-buttons:after", helper => {
+	if (Discourse.User.current()) {
+		var $ntb_text = 'New Topic',
+			$ntb_icon = "plus",
+			$ntb_icon_class = ".fa-" + $ntb_icon,
+			$ntb_butto_class = "btn btn-default btn btn-icon-text",
+			$ntb_button_helper = "button#new-create-topic",
+			$ntb_icon_helper = "i#new-create-topic.fa" + $ntb_icon_class + ".d-icon .d-icon-" + $ntb_icon,
+			$ntb_label_helper = "span.d-button-label";
+			
+			
+		const createTopic = function() {
+			const Composer = require("discourse/models/composer").default;
+			const composerController = Discourse.__container__.lookup(
+				"controller:composer"
+			);
+			composerController.open({
+				action: Composer.CREATE_TOPIC,
+				draftKey: Composer.DRAFT
+			});
+		};
+
+		return helper.h(
+			$ntb_button_helper,
+			{
+				className: $ntb_butto_class,
+				title: $ntb_text,
+				onclick: createTopic
+			},
+			[helper.h($ntb_icon_helper), helper.h($ntb_label_helper, $ntb_text)]
+		);
+	}
+
+});
+</script>
