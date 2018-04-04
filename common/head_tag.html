@@ -1,8 +1,8 @@
 <script type="text/discourse-plugin" version="0.8.18">
 api.decorateWidget("header-buttons:after", helper => {
 	if (Discourse.User.current()) {
-		var $ntb_text = 'New Topic',
-			$ntb_icon = "plus",
+		var $ntb_text = settings.New_topic_button_text,
+			$ntb_icon = settings.New_topic_button_icon,
 			$ntb_icon_class = ".fa-" + $ntb_icon,
 			$ntb_butto_class = "btn btn-default btn btn-icon-text",
 			$ntb_button_helper = "button#new-create-topic",
