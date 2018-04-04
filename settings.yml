@@ -1,7 +1,7 @@
 New_topic_button_icon:
   default: "plus"
   description:
-    en: Choose an icon for the button. You can use any FontAwesome 4.7 icon name like "music" or "star" without qoute marks. 
+    en: Choose an icon for the button. You can use any FontAwesome 4.7 icon name like "music" or "star" without quote marks. 
 New_topic_button_text:
   default: "New Topic"
   description:
