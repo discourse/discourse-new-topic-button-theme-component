@@ -12,3 +12,12 @@
 		display: none;
 	}
 }
+
+@if $New_topic_button_text == '' {
+	#new-create-topic span {
+		display: none;
+	}
+	#new-create-topic i {
+		margin-right: 0;
+	}
+}
