@@ -5,7 +5,7 @@ New_topic_button_icon:
 New_topic_button_text:
   default: "New Topic"
   description:
-    en: Enter the text you want the button to use.
+    en: Enter the text you want the button to use. You can also leave this empty if you want to only use an icon
 Hide_default_button:
   default: true
   description:
