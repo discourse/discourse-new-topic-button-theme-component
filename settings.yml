@@ -5,4 +5,8 @@ New_topic_button_icon:
 New_topic_button_text:
   default: "New Topic"
   description:
-    en: Enter the text you want the button to use. 
+    en: Enter the text you want the button to use.
+Hide_default_button:
+  default: true
+  description:
+    en: Hide the default "+ New topic" button in topic lists?
