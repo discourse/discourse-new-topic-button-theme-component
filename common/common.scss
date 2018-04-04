@@ -7,7 +7,7 @@
 	}
 }
 
-@if $hide_default_button == 'true' {
+@if $Hide_default_button == 'true' {
 	button#create-topic {
 		display: none;
 	}
