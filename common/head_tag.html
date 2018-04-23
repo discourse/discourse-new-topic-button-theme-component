@@ -2,7 +2,7 @@
 api.decorateWidget("header-buttons:after", helper => {
   if (Discourse.User.current()) {
     var $ntb_text = settings.New_topic_button_text,
-      $ntb_title = $ntb_text,
+      $ntb_title = settings.New_topic_button_title,
       $ntb_icon = settings.New_topic_button_icon,
       $ntb_icon_class = ".fa-" + $ntb_icon,
       $ntb_button_class = "btn btn-default btn btn-icon-text",
@@ -11,8 +11,8 @@ api.decorateWidget("header-buttons:after", helper => {
         "i.fa" + $ntb_icon_class + ".d-icon .d-icon-" + $ntb_icon,
       $ntb_label_helper = "span.d-button-label";
 
-    if (settings.New_topic_button_title == "") {
-      var $ntb_title = settings.New_topic_button_title;
+    if ($ntb_title.length == 0) {
+      var $ntb_title = $ntb_text;
     }
 
     const createTopic = function() {
@@ -39,5 +39,4 @@ api.decorateWidget("header-buttons:after", helper => {
     );
   }
 });
-
 </script>
