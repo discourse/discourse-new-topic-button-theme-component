@@ -18,6 +18,6 @@
 
 @if $Hide_default_button == "true" {
   .list-controls .container #create-topic {
-    display:none
+    display:none;
   }
 }
