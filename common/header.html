@@ -2,7 +2,7 @@
 const { iconNode } = require("discourse-common/lib/icon-library");
 
 api.decorateWidget("header-buttons:after", helper => {
-  if (!Discourse.User.current()) return;
+  if (!api.getCurrentUser()) return;
 
   let container = api.container,
     ntb_text = settings.New_topic_button_text,
