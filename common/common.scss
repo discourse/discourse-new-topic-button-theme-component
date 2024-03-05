@@ -17,7 +17,7 @@
 }
 
 @if $Hide_default_button == "true" {
-  button#create-topic {
-    display: none;
+  .list-controls .container #create-topic {
+    display:none;
   }
 }
