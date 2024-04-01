@@ -1,8 +1,8 @@
-@media (max-width: 850px) {
+@include breakpoint("mobile-extra-large") {
   #new-create-topic span {
     display: none;
   }
-  #new-create-topic i {
+  #new-create-topic .d-icon {
     margin-right: 0;
   }
 }
@@ -11,13 +11,13 @@
   #new-create-topic span {
     display: none;
   }
-  #new-create-topic i {
+  #new-create-topic .d-icon {
     margin-right: 0;
   }
 }
 
 @if $Hide_default_button == "true" {
-  button#create-topic {
-    display: none;
+  #create-topic {
+    display: none !important;
   }
 }
