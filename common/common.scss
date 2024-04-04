@@ -1,3 +1,10 @@
+.before-header-panel-outlet {
+  margin-left: auto;
+  + .panel {
+    margin-left: 0;
+  }
+}
+
 @include breakpoint("mobile-extra-large") {
   #new-create-topic span {
     display: none;
@@ -7,17 +14,8 @@
   }
 }
 
-@if $New_topic_button_text == "" {
-  #new-create-topic span {
-    display: none;
-  }
-  #new-create-topic .d-icon {
-    margin-right: 0;
-  }
-}
-
-@if $Hide_default_button == "true" {
-  #create-topic {
+@if $hide_default_button == "true" {
+  .navigation-container #create-topic {
     display: none !important;
   }
 }
