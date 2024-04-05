@@ -7,9 +7,8 @@ export default function migrate(settings) {
   ];
 
   settingsToMigrate.forEach((oldKey) => {
-    const newKey = oldKey.toLowerCase();
     if (settings.has(oldKey)) {
-      settings.set(newKey, settings.get(oldKey));
+      settings.set(oldKey.toLowerCase(), settings.get(oldKey));
       settings.delete(oldKey);
     }
   });

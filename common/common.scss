@@ -3,6 +3,14 @@
   + .panel {
     margin-left: 0;
   }
+
+  // allows the tooltip to match the button height
+  .fk-d-button-tooltip {
+    align-items: stretch;
+  }
+  .fk-d-tooltip__trigger {
+    height: unset;
+  }
 }
 
 @include breakpoint("mobile-extra-large") {
@@ -15,7 +23,7 @@
 }
 
 @if $hide_default_button == "true" {
-  .navigation-container #create-topic {
+  .navigation-controls .fk-d-button-tooltip {
     display: none !important;
   }
 }
