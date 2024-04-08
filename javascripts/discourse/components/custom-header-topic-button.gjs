@@ -34,7 +34,10 @@ export default class CustomHeaderTopicButton extends Component {
   }
 
   get canCreateTopicWithTag() {
-    return !this.router.currentRoute?.tag?.staff || this.currentUser?.staff;
+    return (
+      !this.router.currentRoute.attributes?.tag?.staff ||
+      this.currentUser?.staff
+    );
   }
 
   get canCreateTopicWithCategory() {
