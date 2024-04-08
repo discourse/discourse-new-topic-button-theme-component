@@ -1,9 +1,10 @@
 import Component from "@glimmer/component";
+import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
-import didUpdate from "@ember/render-modifiers/modifiers/did-update";
 import { service } from "@ember/service";
 import DButton from "discourse/components/d-button";
 import DButtonTooltip from "discourse/components/d-button-tooltip";
+import Category from "discourse/models/category";
 import i18n from "discourse-common/helpers/i18n";
 import I18n from "discourse-i18n";
 import DTooltip from "float-kit/components/d-tooltip";
@@ -16,22 +17,35 @@ export default class CustomHeaderTopicButton extends Component {
 
   canCreateTopic = this.currentUser?.can_create_topic;
 
+  topic = this.router.currentRouteName.includes("topic")
+    ? getOwner(this).lookup("controller:topic")
+    : null;
+
   get userHasDraft() {
     return this.currentUser?.get("has_topic_draft");
   }
 
   get currentTag() {
-    return [
-      this.router.currentRoute.attributes?.tag?.id,
-      ...(this.router.currentRoute.attributes?.additionalTags ?? []),
-    ]
-      .filter(Boolean)
-      .filter((t) => !["none", "all"].includes(t))
-      .join(",");
+    if (this.router.currentRoute.attributes?.tag?.id) {
+      return [
+        this.router.currentRoute.attributes?.tag?.id,
+        ...(this.router.currentRoute.attributes?.additionalTags ?? []),
+      ]
+        .filter(Boolean)
+        .filter((t) => !["none", "all"].includes(t))
+        .join(",");
+    } else {
+      return this.topic?.model?.tags?.join(",");
+    }
   }
 
   get currentCategory() {
-    return this.router.currentRoute.attributes?.category;
+    return (
+      this.router.currentRoute.attributes?.category ||
+      (this.topic?.model?.category_id
+        ? Category.findById(this.topic?.model?.category_id)
+        : null)
+    );
   }
 
   get canCreateTopicWithTag() {
@@ -86,10 +100,6 @@ export default class CustomHeaderTopicButton extends Component {
       <DButtonTooltip>
         <:button>
           <DButton
-            {{didUpdate
-              this.updateDraftStatus
-              this.router.currentRoute.attributes
-            }}
             @action={{this.createTopic}}
             @translatedLabel={{this.createTopicLabel}}
             @translatedTitle={{this.createTopicTitle}}
