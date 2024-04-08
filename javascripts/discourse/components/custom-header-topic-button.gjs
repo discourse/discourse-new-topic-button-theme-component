@@ -15,30 +15,30 @@ export default class CustomHeaderTopicButton extends Component {
   @service router;
   @service siteSettings;
 
-  @tracked currentRouteAttributes = this.router.currentRoute.attributes;
-  @tracked userHasDraft = this.currentUser.has_topic_draft;
+  @tracked userHasDraft = this.currentUser?.has_topic_draft;
 
-  canCreateTopic = this.currentUser.can_create_topic;
+  canCreateTopic = this.currentUser?.can_create_topic;
 
   get currentTag() {
     return [
-      this.currentRouteAttributes?.tag?.id,
-      ...(this.currentRouteAttributes?.additionalTags ?? []),
+      this.router.currentRoute.attributes?.tag?.id,
+      ...(this.router.currentRoute.attributes?.additionalTags ?? []),
     ]
       .filter(Boolean)
       .filter((t) => !["none", "all"].includes(t))
       .join(",");
   }
 
+  get currentCategory() {
+    return this.router.currentRoute.attributes?.category;
+  }
+
   get canCreateTopicWithTag() {
-    return !this.currentRouteAttributes?.tag?.staff || this.currentUser.staff;
+    return !this.router.currentRoute?.tag?.staff || this.currentUser?.staff;
   }
 
   get canCreateTopicWithCategory() {
-    return (
-      !this.currentRouteAttributes?.category ||
-      this.currentRouteAttributes?.category?.permission
-    );
+    return !this.currentCategory || this.currentCategory?.permission;
   }
 
   get createTopicDisabled() {
@@ -46,10 +46,10 @@ export default class CustomHeaderTopicButton extends Component {
       return false;
     } else {
       return (
+        !this.canCreateTopic ||
         !this.canCreateTopicWithCategory ||
         !this.canCreateTopicWithTag ||
-        !this.currentUser.can_create_topic ||
-        this.currentRouteAttributes?.category?.read_only_banner
+        this.currentCategory?.read_only_banner
       );
     }
   }
@@ -69,34 +69,24 @@ export default class CustomHeaderTopicButton extends Component {
   }
 
   @action
-  updateRouteAttributes() {
-    this.currentRouteAttributes = this.router.currentRoute.attributes;
-  }
-
-  @action
   updateDraftStatus() {
-    this.userHasDraft = this.currentUser.has_topic_draft;
+    this.userHasDraft = this.currentUser?.has_topic_draft;
   }
 
   @action
   createTopic() {
     this.composer.openNewTopic({
       preferDraft: true,
-      category: this.currentRouteAttributes?.category,
+      category: this.currentCategory,
       tags: this.currentTag,
     });
   }
 
   <template>
     {{#if this.currentUser}}
-
       <DButtonTooltip>
         <:button>
           <DButton
-            {{didUpdate
-              this.updateRouteAttributes
-              this.router.currentRoute.attributes
-            }}
             {{didUpdate
               this.updateDraftStatus
               this.router.currentRoute.attributes
@@ -105,9 +95,9 @@ export default class CustomHeaderTopicButton extends Component {
             @translatedLabel={{this.createTopicLabel}}
             @translatedTitle={{this.createTopicTitle}}
             @icon={{settings.new_topic_button_icon}}
-            @id="new-create-topic"
-            @class="btn-default header-create-topic"
-            @disabled={{this.createTopicDisabled}}
+            id="new-create-topic"
+            class="btn-default header-create-topic"
+            disabled={{this.createTopicDisabled}}
           />
         </:button>
         <:tooltip>
