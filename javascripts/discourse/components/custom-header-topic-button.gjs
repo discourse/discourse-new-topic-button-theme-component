@@ -4,6 +4,7 @@ import { action } from "@ember/object";
 import { service } from "@ember/service";
 import DButton from "discourse/components/d-button";
 import DButtonTooltip from "discourse/components/d-button-tooltip";
+import routeAction from "discourse/helpers/route-action";
 import Category from "discourse/models/category";
 import i18n from "discourse-common/helpers/i18n";
 import I18n from "discourse-i18n";
@@ -86,6 +87,12 @@ export default class CustomHeaderTopicButton extends Component {
     }
   }
 
+  get showAnon() {
+    if (settings.show_to_anon && !this.currentUser) {
+      return true;
+    }
+  }
+
   @action
   createTopic() {
     this.composer.openNewTopic({
@@ -118,6 +125,18 @@ export default class CustomHeaderTopicButton extends Component {
           {{/if}}
         </:tooltip>
       </DButtonTooltip>
+    {{/if}}
+
+    {{#if this.showAnon}}
+      <DButton
+        @action={{routeAction "showLogin"}}
+        @translatedLabel={{this.createTopicLabel}}
+        @translatedTitle={{this.createTopicTitle}}
+        @icon={{settings.new_topic_button_icon}}
+        {{! template-lint-disable no-duplicate-id }}
+        id="new-create-topic"
+        class="btn-default header-create-topic"
+      />
     {{/if}}
   </template>
 }
