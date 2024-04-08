@@ -27,3 +27,13 @@
     display: none !important;
   }
 }
+
+.anon {
+  #new-create-topic {
+    // match default login button size
+    font-size: var(--font-down-1);
+    margin-right: 0.5em;
+    position: relative;
+    top: 0.1em; // optical alignment
+  }
+}

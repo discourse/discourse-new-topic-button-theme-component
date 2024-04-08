@@ -6,3 +6,4 @@ en:
       new_topic_button_text: Enter the text you want the button to use. You can also leave this empty if you want to only use an icon.
       new_topic_button_title: Enter the title you want the button to use. If this is left empy, the title will be the same as the button text
       hide_default_button: Hide the default "New topic" button in topic lists?
+      show_to_anon: Show the button to logged-out visitors, and have it redirect to login on click

@@ -58,10 +58,30 @@ RSpec.describe "New topic header button", type: :system do
   end
 
   context "anonymous visitor" do
-    it "should not display a new topic button in the header for anons" do
+    it "should not display a new topic button in the header for anons by default" do
       visit("/")
 
       expect(page).not_to have_css("#new-create-topic")
+    end
+
+    it "when show_to_anon is enabled, it should display a new topic button in the header for anons" do
+      theme.update_setting(:show_to_anon, true)
+      theme.save!
+
+      visit("/")
+
+      expect(page).to have_css("#new-create-topic")
+    end
+
+    it "when show_to_anon is enabled, clicking the new topic button redirects to login" do
+      theme.update_setting(:show_to_anon, true)
+      theme.save!
+
+      visit("/")
+
+      find("#new-create-topic").click
+
+      expect(page).to have_css(".login-modal")
     end
   end
 end
