@@ -1,5 +1,4 @@
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import didUpdate from "@ember/render-modifiers/modifiers/did-update";
 import { service } from "@ember/service";
@@ -15,9 +14,11 @@ export default class CustomHeaderTopicButton extends Component {
   @service router;
   @service siteSettings;
 
-  @tracked userHasDraft = this.currentUser?.has_topic_draft;
-
   canCreateTopic = this.currentUser?.can_create_topic;
+
+  get userHasDraft() {
+    return this.currentUser?.get("has_topic_draft");
+  }
 
   get currentTag() {
     return [
@@ -69,11 +70,6 @@ export default class CustomHeaderTopicButton extends Component {
     } else {
       return this.createTopicLabel;
     }
-  }
-
-  @action
-  updateDraftStatus() {
-    this.userHasDraft = this.currentUser?.has_topic_draft;
   }
 
   @action
