@@ -1,16 +1,8 @@
-New_topic_button_icon:
+new_topic_button_icon:
   default: "plus"
-  description:
-    en: Choose an icon for the button. You can use any FontAwesome 4.7 icon name like "music" or "star" without quote marks. 
-New_topic_button_text:
+new_topic_button_text:
   default: "New Topic"
-  description:
-    en: Enter the text you want the button to use. You can also leave this empty if you want to only use an icon.
-New_topic_button_title:
+new_topic_button_title:
   default: ""
-  description:
-    en: "Enter the title you want the button to use. If this is left empy, the title will be the same as the button text"
-Hide_default_button:
+hide_default_button:
   default: true
-  description:
-    en: Hide the default "New topic" button in topic lists?
