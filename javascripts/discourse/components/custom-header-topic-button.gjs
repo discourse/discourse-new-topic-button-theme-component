@@ -133,6 +133,7 @@ export default class CustomHeaderTopicButton extends Component {
         @translatedLabel={{this.createTopicLabel}}
         @translatedTitle={{this.createTopicTitle}}
         @icon={{settings.new_topic_button_icon}}
+        {{! template-lint-disable no-duplicate-id }}
         id="new-create-topic"
         class="btn-default header-create-topic"
       />
