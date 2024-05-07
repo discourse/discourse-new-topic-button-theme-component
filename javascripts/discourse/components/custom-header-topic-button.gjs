@@ -87,12 +87,6 @@ export default class CustomHeaderTopicButton extends Component {
     }
   }
 
-  get showAnon() {
-    if (settings.show_to_anon && !this.currentUser) {
-      return true;
-    }
-  }
-
   @action
   createTopic() {
     this.composer.openNewTopic({
@@ -125,15 +119,12 @@ export default class CustomHeaderTopicButton extends Component {
           {{/if}}
         </:tooltip>
       </DButtonTooltip>
-    {{/if}}
-
-    {{#if this.showAnon}}
+    {{else if settings.show_to_anon}}
       <DButton
         @action={{routeAction "showLogin"}}
         @translatedLabel={{this.createTopicLabel}}
         @translatedTitle={{this.createTopicTitle}}
         @icon={{settings.new_topic_button_icon}}
-        {{! template-lint-disable no-duplicate-id }}
         id="new-create-topic"
         class="btn-default header-create-topic"
       />
