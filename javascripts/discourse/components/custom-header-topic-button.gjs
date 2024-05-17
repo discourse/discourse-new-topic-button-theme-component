@@ -67,8 +67,7 @@ export default class CustomHeaderTopicButton extends Component {
       return (
         !this.canCreateTopic ||
         !this.canCreateTopicWithCategory ||
-        !this.canCreateTopicWithTag ||
-        this.currentCategory?.read_only_banner
+        !this.canCreateTopicWithTag
       );
     }
   }
@@ -85,6 +84,10 @@ export default class CustomHeaderTopicButton extends Component {
     } else {
       return this.createTopicLabel;
     }
+  }
+
+  get showDisabledTooltip() {
+    return this.createTopicDisabled && !this.currentCategory?.read_only_banner;
   }
 
   @action
@@ -111,7 +114,7 @@ export default class CustomHeaderTopicButton extends Component {
           />
         </:button>
         <:tooltip>
-          {{#if this.createTopicDisabled}}
+          {{#if this.showDisabledTooltip}}
             <DTooltip
               @icon="info-circle"
               @content={{i18n (themePrefix "button_disabled_tooltip")}}
