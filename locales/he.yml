@@ -5,3 +5,11 @@
 # https://translate.discourse.org/
 
 he:
+  button_disabled_tooltip: אין לך הרשאות ליצור כאן פוסטים.
+  theme_metadata:
+    settings:
+      new_topic_button_icon: נא לבחור סמל לכפתור. אפשר להשתמש בשם הסמל ב־FontAwesome 5 כגון <code>music</code> (מוזיקה) או <code>start</code> (כוכב).
+      new_topic_button_text: נא למלא את הטקסט שמיועד להופיע על הכפתור. אפשר להשאיר את זה ריק כדי להשתמש בסמל בלבד.
+      new_topic_button_title: נא למלא כותרת לשימוש לכפתור. אם זה נשאר ריק, הכותרת תהיה זהיה לטקסט הכפתור
+      hide_default_button: להסתיר את כפתור „נושא חדש” מרשימת הנושאים?
+      show_to_anon: להציג את הכפתור למשתמשים שלא נכנסו למערכת ולהפנות אותם לכניסה בלחיצה.
