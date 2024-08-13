@@ -5,3 +5,11 @@
 # https://translate.discourse.org/
 
 tr_TR:
+  button_disabled_tooltip: Burada konu oluşturma izniniz yok.
+  theme_metadata:
+    settings:
+      new_topic_button_icon: Düğme için bir simge seçin. <code>Müzik</code> veya <code>yıldız</code> gibi herhangi bir ücretsiz FontAwesome 5 simge adını kullanabilirsiniz.
+      new_topic_button_text: Düğmenin kullanmasını istediğiniz metni girin. Yalnızca bir simge kullanmak istiyorsanız bunu boş bırakabilirsiniz.
+      new_topic_button_title: Düğmenin kullanmasını istediğiniz başlığı girin. Bu boş bırakılırsa başlık düğme metniyle aynı olur
+      hide_default_button: Konu listelerindeki varsayılan "Yeni konu" düğmesi gizlensin mi?
+      show_to_anon: Düğmeyi oturum açmamış ziyaretçilere göster ve tıklandığında oturum açmaya yönlendir

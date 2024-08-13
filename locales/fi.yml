@@ -5,3 +5,11 @@
 # https://translate.discourse.org/
 
 fi:
+  button_disabled_tooltip: Sinulla ei ole oikeutta luoda ketjuja täällä.
+  theme_metadata:
+    settings:
+      new_topic_button_icon: Valitse kuvake painikkeelle. Voit käyttää minkä tahansa ilmaisen FontAwesome 5 -kuvakkeen nimeä, kuten <code>music</code> tai <code>star</code>.
+      new_topic_button_text: Kirjoita teksti, jota haluat painikkeen käyttävän. Voit myös jättää tämän tyhjäksi, jos haluat käyttää vain kuvaketta.
+      new_topic_button_title: Kirjoita otsikko, jota haluat painikkeen käyttävän. Jos tämä jätetään tyhjäksi, otsikko on sama kuin painikkeen teksti.
+      hide_default_button: Piilotetaanko oletusarvoinen "Uusi ketju" -painike ketjuluetteloista?
+      show_to_anon: Näytä painike uloskirjautuneille vierailijoille, ja laita se ohjaamaan uudelleen kirjautumiseen napsautettaessa

@@ -5,3 +5,11 @@
 # https://translate.discourse.org/
 
 ja:
+  button_disabled_tooltip: ここでトピックを作成する権限がありません。
+  theme_metadata:
+    settings:
+      new_topic_button_icon: ボタンのアイコンを選択します。<code>music</code> や <code>star</code> など、無料の FontAwesome 5 アイコン名を使用できます。
+      new_topic_button_text: ボタンに使用するテキストを入力します。アイコンのみを使用する場合は、これを空白のままにすることもできます。
+      new_topic_button_title: ボタンに使用するタイトルを入力します。空白のままにすると、タイトルはボタンのテキストと同じになります。
+      hide_default_button: トピックリストのデフォルトの「新規トピック」ボタンを非表示にしますか？
+      show_to_anon: ログアウトした訪問者にボタンを表示し、クリックするとログインにリダイレクトされるようにする

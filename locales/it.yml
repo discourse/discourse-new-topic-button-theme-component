@@ -5,3 +5,11 @@
 # https://translate.discourse.org/
 
 it:
+  button_disabled_tooltip: Non hai l'autorizzazione per creare argomenti qui.
+  theme_metadata:
+    settings:
+      new_topic_button_icon: Scegli un'icona per il pulsante. Puoi utilizzare qualsiasi nome di icona FontAwesome 5 gratuito come <code>music</code> o <code>star</code>.
+      new_topic_button_text: Inserisci il testo che desideri venga utilizzato dal pulsante. Puoi anche lasciarlo vuoto se desideri utilizzare solo un'icona.
+      new_topic_button_title: Inserisci il titolo che desideri venga utilizzato dal pulsante. Se questo viene lasciato vuoto, il titolo sarà lo stesso del testo del pulsante
+      hide_default_button: Nascondere il pulsante predefinito "Nuovo argomento" negli elenchi di argomenti?
+      show_to_anon: Mostra il pulsante ai visitatori che non hanno effettuato l'accesso e fai in modo che vengano reindirizzati all'accesso al clic
