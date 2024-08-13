@@ -5,3 +5,11 @@
 # https://translate.discourse.org/
 
 nl:
+  button_disabled_tooltip: Je hebt geen toestemming om hier topics te maken
+  theme_metadata:
+    settings:
+      new_topic_button_icon: Kies een pictogram voor de knop. Je kunt elke gratis Font Awesome 5-pictogramnaam gebruiken, zoals <code>muziek</code> of <code>ster</code>.
+      new_topic_button_text: Voer de tekst in voor de knop. Je kunt dit ook leeg laten als je alleen een pictogram wilt.
+      new_topic_button_title: Voer de titel in voor de knop. Als dit leeg is, is de titel hetzelfde als de knoptekst.
+      hide_default_button: Standaardknop "Nieuw topic" verbergen in topicslijsten?
+      show_to_anon: Geef de knop weer voor afgemelde bezoekers en laat deze bij een klik doorverwijzen naar het aanmelden

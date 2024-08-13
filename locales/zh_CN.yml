@@ -5,3 +5,11 @@
 # https://translate.discourse.org/
 
 zh_CN:
+  button_disabled_tooltip: 您无权在此处创建话题。
+  theme_metadata:
+    settings:
+      new_topic_button_icon: 为按钮选择一个图标。您可以使用任何免费的 FontAwesome 5 图标名称，如 <code>music</code> 或 <code>star</code>。
+      new_topic_button_text: 输入要用于该按钮的文本。如果您只想使用图标，也可以将其留空。
+      new_topic_button_title: 输入要用于该按钮的文本。如果将其留空，则标题将与按钮文本相同
+      hide_default_button: 是否在话题列表中隐藏默认的“新建话题”按钮？
+      show_to_anon: 向已退出登录的访客显示该按钮，并在点击后重定向至登录页面

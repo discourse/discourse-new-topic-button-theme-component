@@ -5,3 +5,11 @@
 # https://translate.discourse.org/
 
 pt_BR:
+  button_disabled_tooltip: Você não tem permissão para criar tópicos aqui.
+  theme_metadata:
+    settings:
+      new_topic_button_icon: Escolha um ícone para o botão. Você pode usar um nome de ícone do FontAwesome 5 gratuito, como <code>música</code> ou <code>estrela</code>.
+      new_topic_button_text: Insira o texto que você deseja usar para o botão. Você também pode deixar esta opção vazia se quiser usar apenas um ícone.
+      new_topic_button_title: Insira o título que você quer usar para este botão. Se for deixado vazio, o título será igual ao texto do botão
+      hide_default_button: Ocultar o botão padrão "Novo tópico" nas listas de tópicos?
+      show_to_anon: Mostrar o botão para visitantes com conta desconectada e fazer com que redirecione para entrar com a conta ao clicar

@@ -5,3 +5,11 @@
 # https://translate.discourse.org/
 
 ar:
+  button_disabled_tooltip: ليس لديك الإذن لإنشاء موضوعات هنا.
+  theme_metadata:
+    settings:
+      new_topic_button_icon: اختر أيقونة للزر. يمكنك استخدام أي اسم أيقونة من FontAwesome5، مثل <code>music</code> أو <code>star</code>.
+      new_topic_button_text: أدخل النص الذي تريد أن يستخدمه الزر. يمكنك أيضًا ترك هذا الحقل فارغًا إذا كنت تريد استخدام أيقونة فقط.
+      new_topic_button_title: أدخل العنوان الذي تريد أن يستخدمه الزر. إذا تركته فارغًا، فسيكون العنوان هو نفس نص الزر
+      hide_default_button: إخفاء الزر "موضوع جديد" الافتراضي في قوائم الموضوعات؟
+      show_to_anon: إظهار الزر للزوار الذين سجَّلوا الخروج، وإعادة توجيههم لتسجيل الدخول عند النقر عليه

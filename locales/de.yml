@@ -5,11 +5,11 @@
 # https://translate.discourse.org/
 
 de:
-  button_disabled_tooltip: Du hast keine Berechtigung hier Themen zu erstellen
+  button_disabled_tooltip: Du hast keine Berechtigung dazu, hier Themen zu erstellen.
   theme_metadata:
     settings:
       new_topic_button_icon: Wähle ein Symbol für die Schaltfläche. Du kannst ein beliebiges kostenloses FontAwesome 5-Symbol wie <code>music</code> oder <code>star</code> verwenden.
       new_topic_button_text: Gib den Text ein, den die Schaltfläche verwenden soll. Du kannst dieses Feld auch leer lassen, wenn du nur ein Symbol verwenden möchtest.
       new_topic_button_title: Gib den Titel ein, den die Schaltfläche verwenden soll. Wenn dieses Feld leer bleibt, entspricht der Titel dem Text der Schaltfläche
-      hide_default_button: Die Standardschaltfläche "Neues Thema" in Themenlisten ausblenden?
+      hide_default_button: Die Standardschaltfläche „Neues Thema“ in Themenlisten ausblenden?
       show_to_anon: Zeige die Schaltfläche für abgemeldete Besucher an und leite sie bei einem Klick zur Anmeldung weiter
