@@ -4,7 +4,7 @@ RSpec.describe "New topic header button", type: :system do
   fab!(:theme) { upload_theme_component }
 
   fab!(:user) { Fabricate(:user, trust_level: TrustLevel[1]) }
-  fab!(:category) { Fabricate(:category, read_only_banner: true) }
+  fab!(:category) { Fabricate(:category) }
   fab!(:category2) { Fabricate(:category) }
 
   context "logged in user" do
@@ -50,9 +50,12 @@ RSpec.describe "New topic header button", type: :system do
     end
 
     it "does not open composer if user can't post in the category" do
+      category.set_permissions(everyone: :readonly)
+      category.save!
       visit("/c/#{category.id}")
 
       find("#new-create-topic").click
+
       expect(page).not_to have_css(".composer-open")
     end
   end
@@ -61,7 +64,7 @@ RSpec.describe "New topic header button", type: :system do
     it "when show_to_anon is disabled, it should not display a new topic button in the header" do
       theme.update_setting(:show_to_anon, false)
       theme.save!
-      
+
       visit("/")
 
       expect(page).not_to have_css("#new-create-topic")

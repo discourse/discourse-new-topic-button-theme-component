@@ -64,6 +64,7 @@ export default class CustomHeaderTopicButton extends Component {
     if (this.userHasDraft) {
       return false;
     } else {
+      console.log(this.currentCategory?.read_only_banner);
       return (
         !this.canCreateTopic ||
         !this.canCreateTopicWithCategory ||
