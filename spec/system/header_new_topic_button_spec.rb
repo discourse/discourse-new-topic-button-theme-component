@@ -4,7 +4,7 @@ RSpec.describe "New topic header button", type: :system do
   fab!(:theme) { upload_theme_component }
 
   fab!(:user) { Fabricate(:user, trust_level: TrustLevel[1]) }
-  fab!(:category) { Fabricate(:category) }
+  fab!(:category)
   fab!(:category2) { Fabricate(:category) }
 
   context "logged in user" do
@@ -20,9 +20,7 @@ RSpec.describe "New topic header button", type: :system do
       visit("/c/#{category2.id}")
 
       find("#new-create-topic").click
-      expect(page).to have_css(
-        ".category-input [data-category-id='#{category2.id}']"
-      )
+      expect(page).to have_css(".category-input [data-category-id='#{category2.id}']")
     end
 
     it "should not contain text when new_topic_button_text is empty" do
