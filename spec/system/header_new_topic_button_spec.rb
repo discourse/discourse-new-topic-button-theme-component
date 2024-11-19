@@ -7,7 +7,7 @@ RSpec.describe "New topic header button", type: :system do
   fab!(:category)
   fab!(:category2) { Fabricate(:category) }
 
-  context "logged in user" do
+  context "with logged in user" do
     before { sign_in(user) }
 
     it "should display a new topic button in the header" do
@@ -58,7 +58,7 @@ RSpec.describe "New topic header button", type: :system do
     end
   end
 
-  context "anonymous visitor" do
+  context "with anonymous visitor" do
     it "when show_to_anon is disabled, it should not display a new topic button in the header" do
       theme.update_setting(:show_to_anon, false)
       theme.save!
