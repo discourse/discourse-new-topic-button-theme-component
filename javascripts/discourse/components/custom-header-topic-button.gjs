@@ -116,7 +116,7 @@ export default class CustomHeaderTopicButton extends Component {
         <:tooltip>
           {{#if this.showDisabledTooltip}}
             <DTooltip
-              @icon="info-circle"
+              @icon="circle-info"
               @content={{i18n (themePrefix "button_disabled_tooltip")}}
             />
           {{/if}}
