@@ -32,11 +32,11 @@ RSpec.describe "New topic header button", type: :system do
     end
 
     it "should update icon based on new_topic_button_icon setting" do
-      theme.update_setting(:new_topic_button_icon, "times")
+      theme.update_setting(:new_topic_button_icon, "xmark")
       theme.save!
 
       visit("/")
-      expect(page).to have_css("#new-create-topic .d-icon-times")
+      expect(page).to have_css("#new-create-topic .d-icon-xmark")
     end
 
     it "should not display the default new topic button when hide_default_button is enabled" do
