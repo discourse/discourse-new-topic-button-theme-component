@@ -6,8 +6,7 @@ import DButton from "discourse/components/d-button";
 import DButtonTooltip from "discourse/components/d-button-tooltip";
 import routeAction from "discourse/helpers/route-action";
 import Category from "discourse/models/category";
-import i18n from "discourse-common/helpers/i18n";
-import I18n from "discourse-i18n";
+import { i18n } from "discourse-i18n";
 import DTooltip from "float-kit/components/d-tooltip";
 
 export default class CustomHeaderTopicButton extends Component {
@@ -74,7 +73,7 @@ export default class CustomHeaderTopicButton extends Component {
 
   get createTopicLabel() {
     return this.userHasDraft
-      ? I18n.t("topic.open_draft")
+      ? i18n("topic.open_draft")
       : settings.new_topic_button_text;
   }
 
