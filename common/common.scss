@@ -1,5 +1,6 @@
 .before-header-panel-outlet {
   margin-left: auto;
+
   + .panel {
     margin-left: 0;
   }
@@ -8,6 +9,7 @@
   .fk-d-button-tooltip {
     align-items: stretch;
   }
+
   .fk-d-tooltip__trigger {
     height: unset;
   }
@@ -17,6 +19,7 @@
   #new-create-topic span {
     display: none;
   }
+
   #new-create-topic .d-icon {
     margin-right: 0;
   }
