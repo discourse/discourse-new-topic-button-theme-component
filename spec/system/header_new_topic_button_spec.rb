@@ -85,7 +85,7 @@ RSpec.describe "New topic header button", type: :system do
 
       find("#new-create-topic").click
 
-      expect(page).to have_css(".login-modal")
+      expect(page).to have_css(".login-fullpage")
     end
   end
 end
