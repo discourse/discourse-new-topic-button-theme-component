@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe "New topic header button", type: :system do
-  fab!(:theme) { upload_theme_component }
+  let!(:theme) { upload_theme_component }
 
   fab!(:user) { Fabricate(:user, trust_level: TrustLevel[1]) }
   fab!(:category)
@@ -17,75 +17,91 @@ RSpec.describe "New topic header button", type: :system do
     end
 
     it "should open the composer to the correct category when the header button is clicked" do
-      visit("/c/#{category2.id}")
-
+      visit("/c/#{category2.slug}/#{category2.id}")
       find("#new-create-topic").click
+
       expect(page).to have_css(".category-input [data-category-id='#{category2.id}']")
     end
 
-    it "should not contain text when new_topic_button_text is empty" do
-      theme.update_setting(:new_topic_button_text, "")
-      theme.save!
+    context "when new_topic_button_text is empty" do
+      before do
+        theme.update_setting(:new_topic_button_text, "")
+        theme.save!
+      end
 
-      visit("/")
-      expect(page).not_to have_css("#new-create-topic .d-button-label")
+      it "doesn’t show the label" do
+        visit("/")
+
+        expect(page).to have_no_css("#new-create-topic .d-button-label")
+      end
     end
 
-    it "should update icon based on new_topic_button_icon setting" do
-      theme.update_setting(:new_topic_button_icon, "xmark")
-      theme.save!
+    context "when new_topic_button_icon is set" do
+      before do
+        theme.update_setting(:new_topic_button_icon, "xmark")
+        theme.save!
+      end
 
-      visit("/")
-      expect(page).to have_css("#new-create-topic .d-icon-xmark")
+      it "uses the correct icon" do
+        visit("/")
+
+        expect(page).to have_css("#new-create-topic .d-icon-xmark")
+      end
     end
 
-    it "should not display the default new topic button when hide_default_button is enabled" do
-      theme.update_setting(:hide_default_button, true)
-      theme.save!
+    context "when hide_default_button is enabled" do
+      before do
+        theme.update_setting(:hide_default_button, true)
+        theme.save!
+      end
 
-      visit("/")
-      expect(page).not_to have_css("#create-topic")
+      it "should not display the default new topic button" do
+        visit("/")
+
+        expect(page).to have_no_css("#create-topic")
+      end
     end
 
-    it "does not open composer if user can't post in the category" do
-      category.set_permissions(everyone: :readonly)
-      category.save!
-      visit("/c/#{category.id}")
+    context "when category is inaccessible" do
+      before do
+        category.set_permissions(everyone: :readonly)
+        category.save!
+      end
 
-      find("#new-create-topic").click
+      it "can't open composer" do
+        visit("/c/#{category.slug}/#{category.id}")
 
-      expect(page).not_to have_css(".composer-open")
+        expect(page).to have_css("#new-create-topic[disabled]")
+      end
     end
   end
 
   context "with anonymous visitor" do
-    it "when show_to_anon is disabled, it should not display a new topic button in the header" do
-      theme.update_setting(:show_to_anon, false)
-      theme.save!
+    context "when show_to_anon is disabled" do
+      before do
+        theme.update_setting(:show_to_anon, false)
+        theme.save!
+      end
 
-      visit("/")
+      it "displays no new topic button in the header" do
+        visit("/")
 
-      expect(page).not_to have_css("#new-create-topic")
+        expect(page).to have_no_css("#new-create-topic")
+      end
     end
 
-    it "when show_to_anon is enabled, it should display a new topic button in the header" do
-      theme.update_setting(:show_to_anon, true)
-      theme.save!
+    context "when show_to_anon is enabled" do
+      before do
+        theme.update_setting(:show_to_anon, true)
+        theme.save!
+      end
 
-      visit("/")
+      it "redirects to login when click new topic button" do
+        visit("/")
+        find("#new-create-topic").click
 
-      expect(page).to have_css("#new-create-topic")
-    end
-
-    it "when show_to_anon is enabled, clicking the new topic button redirects to login" do
-      theme.update_setting(:show_to_anon, true)
-      theme.save!
-
-      visit("/")
-
-      find("#new-create-topic").click
-
-      expect(page).to have_css(".login-fullpage")
+        expect(page).to have_css(".login-fullpage")
+      end
     end
   end
 end
