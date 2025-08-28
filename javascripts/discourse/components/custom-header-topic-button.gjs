@@ -39,6 +39,14 @@ export default class CustomHeaderTopicButton extends Component {
     }
   }
 
+  get composerCategory() {
+    if (settings.open_composer_without_category) {
+      return null;
+    } else {
+      return this.currentCategory;
+    }
+  }
+
   get currentCategory() {
     return (
       this.router.currentRoute.attributes?.category ||
@@ -93,7 +101,7 @@ export default class CustomHeaderTopicButton extends Component {
   createTopic() {
     this.composer.openNewTopic({
       preferDraft: true,
-      category: this.currentCategory,
+      category: this.composerCategory,
       tags: this.currentTag,
     });
   }

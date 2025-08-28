@@ -11,5 +11,5 @@ es:
       new_topic_button_icon: Elige un icono para el botón. Puedes usar cualquier nombre de icono gratuito de FontAwesome 5, como <code>music</code> o <code>star</code>.
       new_topic_button_text: Introduce el texto que quieres que utilice el botón. También puedes dejarlo vacío si solo quieres utilizar un icono.
       new_topic_button_title: Introduce el título que quieres que utilice el botón. Si se deja vacío, el título será el mismo que el texto del botón
-      hide_default_button: '¿Ocultar el botón predeterminado «Nuevo tema» en las listas de temas?'
+      hide_default_button: "¿Ocultar el botón predeterminado «Nuevo tema» en las listas de temas?"
       show_to_anon: Mostrar el botón a los visitantes desconectados y hacer que redirija al inicio de sesión al hacer clic

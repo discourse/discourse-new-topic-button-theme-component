@@ -8,3 +8,5 @@ hide_default_button:
   default: true
 show_to_anon:
   default: false
+open_composer_without_category:
+  default: false
