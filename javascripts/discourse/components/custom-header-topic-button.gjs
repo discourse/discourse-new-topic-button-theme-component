@@ -70,18 +70,14 @@ export default class CustomHeaderTopicButton extends Component {
 
   <template>
     {{#if this.currentUser}}
-      <DButton>
-        <:button>
-          <DButton
-            @action={{this.createTopic}}
-            @translatedLabel={{this.createTopicLabel}}
-            @translatedTitle={{this.createTopicTitle}}
-            @icon={{settings.new_topic_button_icon}}
-            id="new-create-topic"
-            class="btn-default header-create-topic"
-          />
-        </:button>
-      </DButton>
+      <DButton
+        @action={{this.createTopic}}
+        @translatedLabel={{this.createTopicLabel}}
+        @translatedTitle={{this.createTopicTitle}}
+        @icon={{settings.new_topic_button_icon}}
+        id="new-create-topic"
+        class="btn-default header-create-topic"
+      />
     {{else if settings.show_to_anon}}
       <DButton
         @action={{routeAction "showLogin"}}
