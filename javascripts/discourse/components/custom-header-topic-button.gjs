@@ -70,7 +70,7 @@ export default class CustomHeaderTopicButton extends Component {
 
   <template>
     {{#if this.currentUser}}
-      <DButtonTooltip>
+      <DButton>
         <:button>
           <DButton
             @action={{this.createTopic}}
@@ -81,15 +81,7 @@ export default class CustomHeaderTopicButton extends Component {
             class="btn-default header-create-topic"
           />
         </:button>
-        <:tooltip>
-          {{#if this.showDisabledTooltip}}
-            <DTooltip
-              @icon="circle-info"
-              @content={{i18n (themePrefix "button_disabled_tooltip")}}
-            />
-          {{/if}}
-        </:tooltip>
-      </DButtonTooltip>
+      </DButton>
     {{else if settings.show_to_anon}}
       <DButton
         @action={{routeAction "showLogin"}}
