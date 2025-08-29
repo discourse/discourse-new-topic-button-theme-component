@@ -13,9 +13,6 @@ export default class CustomHeaderTopicButton extends Component {
   @service composer;
   @service currentUser;
   @service router;
-  @service siteSettings;
-
-  canCreateTopic = this.currentUser?.can_create_topic;
 
   topic = this.router.currentRouteName.includes("topic")
     ? getOwner(this).lookup("controller:topic")
@@ -48,29 +45,6 @@ export default class CustomHeaderTopicButton extends Component {
     );
   }
 
-  get canCreateTopicWithTag() {
-    return (
-      !this.router.currentRoute.attributes?.tag?.staff ||
-      this.currentUser?.staff
-    );
-  }
-
-  get canCreateTopicWithCategory() {
-    return !this.currentCategory || this.currentCategory?.permission;
-  }
-
-  get createTopicDisabled() {
-    if (this.userHasDraft) {
-      return false;
-    } else {
-      return (
-        !this.canCreateTopic ||
-        !this.canCreateTopicWithCategory ||
-        !this.canCreateTopicWithTag
-      );
-    }
-  }
-
   get createTopicLabel() {
     return this.userHasDraft
       ? i18n("topic.open_draft")
@@ -83,10 +57,6 @@ export default class CustomHeaderTopicButton extends Component {
     } else {
       return this.createTopicLabel;
     }
-  }
-
-  get showDisabledTooltip() {
-    return this.createTopicDisabled && !this.currentCategory?.read_only_banner;
   }
 
   @action
@@ -109,7 +79,6 @@ export default class CustomHeaderTopicButton extends Component {
             @icon={{settings.new_topic_button_icon}}
             id="new-create-topic"
             class="btn-default header-create-topic"
-            disabled={{this.createTopicDisabled}}
           />
         </:button>
         <:tooltip>
