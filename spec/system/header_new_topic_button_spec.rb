@@ -71,7 +71,7 @@ RSpec.describe "New topic header button", type: :system do
       it "can open composer" do
         visit("/c/#{category.slug}/#{category.id}")
 
-        expect(page).to have_no_css("#create-topic")
+        expect(page).to have_css("#new-create-topic:not([disabled])")
       end
     end
   end
