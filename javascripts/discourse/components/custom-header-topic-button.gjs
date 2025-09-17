@@ -3,19 +3,14 @@ import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import DButton from "discourse/components/d-button";
-import DButtonTooltip from "discourse/components/d-button-tooltip";
 import routeAction from "discourse/helpers/route-action";
 import Category from "discourse/models/category";
 import { i18n } from "discourse-i18n";
-import DTooltip from "float-kit/components/d-tooltip";
 
 export default class CustomHeaderTopicButton extends Component {
   @service composer;
   @service currentUser;
   @service router;
-  @service siteSettings;
-
-  canCreateTopic = this.currentUser?.can_create_topic;
 
   topic = this.router.currentRouteName.includes("topic")
     ? getOwner(this).lookup("controller:topic")
@@ -48,29 +43,6 @@ export default class CustomHeaderTopicButton extends Component {
     );
   }
 
-  get canCreateTopicWithTag() {
-    return (
-      !this.router.currentRoute.attributes?.tag?.staff ||
-      this.currentUser?.staff
-    );
-  }
-
-  get canCreateTopicWithCategory() {
-    return !this.currentCategory || this.currentCategory?.permission;
-  }
-
-  get createTopicDisabled() {
-    if (this.userHasDraft) {
-      return false;
-    } else {
-      return (
-        !this.canCreateTopic ||
-        !this.canCreateTopicWithCategory ||
-        !this.canCreateTopicWithTag
-      );
-    }
-  }
-
   get createTopicLabel() {
     return this.userHasDraft
       ? i18n("topic.open_draft")
@@ -85,10 +57,6 @@ export default class CustomHeaderTopicButton extends Component {
     }
   }
 
-  get showDisabledTooltip() {
-    return this.createTopicDisabled && !this.currentCategory?.read_only_banner;
-  }
-
   @action
   createTopic() {
     this.composer.openNewTopic({
@@ -100,27 +68,14 @@ export default class CustomHeaderTopicButton extends Component {
 
   <template>
     {{#if this.currentUser}}
-      <DButtonTooltip>
-        <:button>
-          <DButton
-            @action={{this.createTopic}}
-            @translatedLabel={{this.createTopicLabel}}
-            @translatedTitle={{this.createTopicTitle}}
-            @icon={{settings.new_topic_button_icon}}
-            id="new-create-topic"
-            class="btn-default header-create-topic"
-            disabled={{this.createTopicDisabled}}
-          />
-        </:button>
-        <:tooltip>
-          {{#if this.showDisabledTooltip}}
-            <DTooltip
-              @icon="circle-info"
-              @content={{i18n (themePrefix "button_disabled_tooltip")}}
-            />
-          {{/if}}
-        </:tooltip>
-      </DButtonTooltip>
+      <DButton
+        @action={{this.createTopic}}
+        @translatedLabel={{this.createTopicLabel}}
+        @translatedTitle={{this.createTopicTitle}}
+        @icon={{settings.new_topic_button_icon}}
+        id="new-create-topic"
+        class="btn-default header-create-topic"
+      />
     {{else if settings.show_to_anon}}
       <DButton
         @action={{routeAction "showLogin"}}
