@@ -28,7 +28,8 @@
 }
 
 @if $hide_default_button == "true" {
-  .navigation-controls .fk-d-button-tooltip {
+  .navigation-controls #create-topic,
+  .navigation-controls #create-topic + .fk-d-menu__trigger {
     display: none !important;
   }
 }
