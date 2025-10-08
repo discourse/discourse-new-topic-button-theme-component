@@ -5,7 +5,7 @@ RSpec.describe "New topic header button", type: :system do
 
   fab!(:user) { Fabricate(:user, trust_level: TrustLevel[1]) }
   fab!(:category)
-  fab!(:category2) { Fabricate(:category) }
+  fab!(:category2, :category)
 
   context "with logged in user" do
     before { sign_in(user) }
