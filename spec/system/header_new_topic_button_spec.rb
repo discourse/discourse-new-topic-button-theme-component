@@ -7,6 +7,7 @@ RSpec.describe "New topic header button", type: :system do
   fab!(:category)
   fab!(:category2, :category)
   fab!(:topic) { Fabricate(:topic, category: category) }
+  fab!(:post) { Fabricate(:post, user:, topic:) }
 
   context "with logged in user" do
     before { sign_in(user) }
@@ -25,7 +26,7 @@ RSpec.describe "New topic header button", type: :system do
     end
 
     it "should open the composer to the correct category when the header button is clicked from a topic page" do
-      visit("/t/#{topic.slug}/#{topic.id}")
+      visit(topic.url)
       find("#new-create-topic").click
 
       expect(page).to have_css(".category-input [data-category-id='#{category.id}']")
