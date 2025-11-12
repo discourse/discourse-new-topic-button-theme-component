@@ -13,7 +13,8 @@ export default class CustomHeaderTopicButton extends Component {
   @service currentUser;
   @service router;
 
-  @tracked topic = this.router.currentRouteName.includes("topic")
+  @tracked
+  topic = this.router.currentRouteName.includes("topic")
     ? getOwner(this).lookup("controller:topic")
     : null;
 
