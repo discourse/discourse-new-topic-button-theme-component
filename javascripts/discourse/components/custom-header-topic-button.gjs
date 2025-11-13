@@ -1,4 +1,5 @@
 import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { getOwner } from "@ember/owner";
 import { service } from "@ember/service";
@@ -12,6 +13,7 @@ export default class CustomHeaderTopicButton extends Component {
   @service currentUser;
   @service router;
 
+  @tracked
   topic = this.router.currentRouteName.includes("topic")
     ? getOwner(this).lookup("controller:topic")
     : null;
