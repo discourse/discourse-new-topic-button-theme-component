@@ -23,9 +23,9 @@ export default class CustomHeaderTopicButton extends Component {
   }
 
   get currentTag() {
-    if (this.router.currentRoute.attributes?.tag?.id) {
+    if (this.router.currentRoute.attributes?.tag?.name) {
       return [
-        this.router.currentRoute.attributes?.tag?.id,
+        this.router.currentRoute.attributes?.tag?.name,
         ...(this.router.currentRoute.attributes?.additionalTags ?? []),
       ]
         .filter(Boolean)
