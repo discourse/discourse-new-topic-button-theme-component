@@ -13,6 +13,8 @@ RSpec.describe "New topic header button", type: :system do
   fab!(:post_with_tags) { Fabricate(:post, user:, topic: topic_with_tags) }
 
   let(:mini_tag_chooser) { PageObjects::Components::SelectKit.new(".mini-tag-chooser") }
+  let(:topic_page) { PageObjects::Pages::Topic.new }
+  let(:composer) { PageObjects::Components::Composer.new }
 
   context "with logged in user" do
     before { sign_in(user) }
@@ -31,15 +33,15 @@ RSpec.describe "New topic header button", type: :system do
     end
 
     it "should open the composer to the correct category when the header button is clicked from a topic page" do
-      visit(topic.url)
+      topic_page.visit_topic(topic)
       find("#new-create-topic").click
 
-      expect(page).to have_css(".category-input [data-category-id='#{category.id}']")
+      expect(composer.category_chooser).to have_selected_value(category.id)
     end
 
     it "should open the composer with the correct tags when the header button is clicked from a topic page with tags" do
       SiteSetting.tagging_enabled = true
-      visit(topic_with_tags.url)
+      topic_page.visit_topic(topic_with_tags)
       find("#new-create-topic").click
 
       expect(mini_tag_chooser).to have_selected_name(tag.name)
