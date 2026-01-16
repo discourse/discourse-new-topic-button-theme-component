@@ -32,7 +32,11 @@ export default class CustomHeaderTopicButton extends Component {
         .filter((t) => !["none", "all"].includes(t))
         .join(",");
     } else {
-      return this.topic?.model?.tags?.join(",");
+      // TODO(https://github.com/discourse/discourse/pull/36678): The string check can be
+      // removed using .discourse-compatibility once the PR is merged.
+      return this.topic?.model?.tags
+        ?.map((t) => (typeof t === "string" ? t : t.name))
+        .join(",");
     }
   }
 
