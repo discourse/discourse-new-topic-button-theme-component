@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "New topic header button", type: :system do
+RSpec.describe "New topic header button" do
   let!(:theme) { upload_theme_component }
 
   fab!(:user) { Fabricate(:user, trust_level: TrustLevel[1]) }
