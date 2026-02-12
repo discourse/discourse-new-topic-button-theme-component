@@ -9,7 +9,7 @@ acceptance("Custom Header Topic Button | tag route", function (needs) {
   needs.settings({ tagging_enabled: true });
 
   needs.pretender((server, helper) => {
-    server.get("/tag/important/l/latest.json", () => {
+    server.get("/tag/:tag_id/l/latest.json", () => {
       return helper.response(
         cloneJSON(discoveryFixture["/tag/important/l/latest.json"])
       );
@@ -26,7 +26,7 @@ acceptance("Custom Header Topic Button | tag route", function (needs) {
   });
 
   test("tag route provides tag name in route attributes", async function (assert) {
-    await visit("/tag/important");
+    await visit("/tag/important/1");
 
     const router = getOwner(this).lookup("service:router");
     const tagName = router.currentRoute.attributes?.tag?.name;
