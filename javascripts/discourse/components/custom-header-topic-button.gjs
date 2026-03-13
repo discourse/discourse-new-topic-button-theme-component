@@ -1,5 +1,4 @@
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { getOwner } from "@ember/owner";
 import { service } from "@ember/service";
@@ -13,10 +12,11 @@ export default class CustomHeaderTopicButton extends Component {
   @service currentUser;
   @service router;
 
-  @tracked
-  topic = this.router.currentRouteName.includes("topic")
-    ? getOwner(this).lookup("controller:topic")
-    : null;
+  get topic() {
+    return this.router.currentRouteName.includes("topic")
+      ? getOwner(this).lookup("controller:topic")
+      : null;
+  }
 
   get userHasDraft() {
     return this.currentUser?.get("has_topic_draft");
@@ -32,11 +32,7 @@ export default class CustomHeaderTopicButton extends Component {
         .filter((t) => !["none", "all"].includes(t))
         .join(",");
     } else {
-      // TODO(https://github.com/discourse/discourse/pull/36678): The string check can be
-      // removed using .discourse-compatibility once the PR is merged.
-      return this.topic?.model?.tags
-        ?.map((t) => (typeof t === "string" ? t : t.name))
-        .join(",");
+      return this.topic?.model?.tags?.map((t) => t.name).join(",");
     }
   }
 
