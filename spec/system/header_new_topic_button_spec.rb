@@ -47,9 +47,9 @@ RSpec.describe "New topic header button" do
       expect(mini_tag_chooser).to have_selected_name(tag.name)
     end
 
-    context "when new_topic_button_text is empty" do
+    context "when show_button_text is disabled" do
       before do
-        theme.update_setting(:new_topic_button_text, "")
+        theme.update_setting(:show_button_text, false)
         theme.save!
       end
 
@@ -57,6 +57,41 @@ RSpec.describe "New topic header button" do
         visit("/")
 
         expect(page).to have_no_css("#new-create-topic .d-button-label")
+      end
+    end
+
+    context "when new_topic_button_text is set" do
+      before do
+        theme.update_setting(:new_topic_button_text, "Ask a question")
+        theme.save!
+      end
+
+      it "shows the custom text" do
+        visit("/")
+
+        expect(page).to have_css("#new-create-topic .d-button-label", exact_text: "Ask a question")
+      end
+    end
+
+    context "when new_topic_button_text is empty" do
+      it "uses core's label" do
+        visit("/")
+
+        expect(page).to have_css(
+          "#new-create-topic .d-button-label",
+          exact_text: I18n.t("js.topic.create"),
+        )
+      end
+
+      it "follows the site locale" do
+        SiteSetting.default_locale = "fr"
+
+        visit("/")
+
+        expect(page).to have_css(
+          "#new-create-topic .d-button-label",
+          exact_text: I18n.t("js.topic.create", locale: :fr),
+        )
       end
     end
 
