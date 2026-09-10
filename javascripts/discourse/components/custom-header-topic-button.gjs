@@ -50,9 +50,11 @@ export default class CustomHeaderTopicButton extends Component {
       return i18n("topic.open_draft");
     }
 
-    return settings.use_core_button_text
-      ? i18n("topic.create")
-      : settings.new_topic_button_text;
+    if (!settings.show_button_text) {
+      return "";
+    }
+
+    return settings.new_topic_button_text || i18n("topic.create");
   }
 
   get createTopicTitle() {
