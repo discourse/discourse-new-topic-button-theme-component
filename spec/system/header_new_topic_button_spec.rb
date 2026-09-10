@@ -60,6 +60,34 @@ RSpec.describe "New topic header button" do
       end
     end
 
+    context "when use_core_button_text is enabled" do
+      before do
+        theme.update_setting(:use_core_button_text, true)
+        theme.update_setting(:new_topic_button_text, "Custom text")
+        theme.save!
+      end
+
+      it "uses core's label instead of the theme setting" do
+        visit("/")
+
+        expect(page).to have_css(
+          "#new-create-topic .d-button-label",
+          exact_text: I18n.t("js.topic.create"),
+        )
+      end
+
+      it "follows the site locale" do
+        SiteSetting.default_locale = "fr"
+
+        visit("/")
+
+        expect(page).to have_css(
+          "#new-create-topic .d-button-label",
+          exact_text: I18n.t("js.topic.create", locale: :fr),
+        )
+      end
+    end
+
     context "when new_topic_button_icon is set" do
       before do
         theme.update_setting(:new_topic_button_icon, "xmark")

@@ -2,8 +2,9 @@ en:
   button_disabled_tooltip: You don't have permission to create topics here.
   theme_metadata:
     settings:
+      use_core_button_text: Use Discourse's own "New topic" wording, translated into each visitor's language. When enabled, the new topic button text setting is ignored.
       new_topic_button_icon: Choose an icon for the button. You can use any free FontAwesome 5 icon name like <code>music</code> or <code>star</code>.
-      new_topic_button_text: Enter the text you want the button to use. You can also leave this empty if you want to only use an icon.
+      new_topic_button_text: Enter the text you want the button to use. You can also leave this empty if you want to only use an icon. Ignored when "Use core button text" is enabled.
       new_topic_button_title: Enter the title you want the button to use. If this is left empy, the title will be the same as the button text
       hide_default_button: Hide the default "New topic" button in topic lists?
       show_to_anon: Show the button to logged-out visitors, and have it redirect to login on click

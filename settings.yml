@@ -1,3 +1,5 @@
+use_core_button_text:
+  default: false
 new_topic_button_icon:
   default: "plus"
 new_topic_button_text:

@@ -46,8 +46,12 @@ export default class CustomHeaderTopicButton extends Component {
   }
 
   get createTopicLabel() {
-    return this.userHasDraft
-      ? i18n("topic.open_draft")
+    if (this.userHasDraft) {
+      return i18n("topic.open_draft");
+    }
+
+    return settings.use_core_button_text
+      ? i18n("topic.create")
       : settings.new_topic_button_text;
   }
 
